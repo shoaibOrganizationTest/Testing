@@ -32,8 +32,10 @@ jobs:
         run: |
           # Extract issueKey from the payload
           issueKey=${{ github.event.client_payload.issueKey }}
+          echo "$issueKey"
           # Your JIRA API URL
           jiraUrl="https://testjiragitautomation.atlassian.net/rest/api/3/issue/${issueKey}"
+          echo "$jiraUrl"
           # Your JIRA Custom Field IDs
           customFieldIdAPI="customfield_10040"
           customFieldIdSchema="customfield_10041"
