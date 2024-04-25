@@ -51,15 +51,4 @@ jobs:
                 }
               }' \
               "${jiraUrl}"
-          fi
-          # Update custom field for schema change
-            curl -X PUT \
-              -H "Content-Type: application/json" \
-              -u "${jiraUsername}:${jiraToken}" \
-              -d '{
-                "fields": {
-                  "customfield_10041": "you"
-                }
-              }' \
-              "${jiraUrl}"
-          fi
+          
