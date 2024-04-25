@@ -13,29 +13,10 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: List Branches and Set Outputs
-        id: list-branches
-        run: |
-          git fetch --all --prune
-          git branch -a
-          branches=$(git branch -a)
-          if echo "${branches}" | grep -q "${{ github.event.client_payload.issueKey }}"; then
-            echo "${{ github.event.client_payload.issueKey }} branch exists."
-            echo "TARGET_BRANCH=exists" >> $GITHUB_ENV
-          else
-            echo "Branch ${{ github.event.client_payload.issueKey }} does not exist. Skipping subsequent steps."
-            echo "TARGET_BRANCH=not_exists" >> $GITHUB_ENV
-            exit 0
-          fi
-
       - name: Update JIRA Custom Fields
         run: |
-          # Extract issueKey from the payload
-          issueKey=${{ github.event.client_payload.issueKey }}
-          echo "$issueKey"
           # Your JIRA API URL
-          jiraUrl="https://testjiragitautomation.atlassian.net/rest/api/3/issue/${issueKey}"
-          echo "$jiraUrl"
+          jiraUrl="https://testjiragitautomation.atlassian.net/rest/api/3/issue/SCRUM-19"
           # Your JIRA Custom Field IDs
           customFieldIdAPI="customfield_10040"
           customFieldIdSchema="customfield_10041"
